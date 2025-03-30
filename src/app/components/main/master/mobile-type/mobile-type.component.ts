@@ -19,6 +19,6 @@ constructor(private modal : NgbModal){
 
 }
   addType(model){
-  //  this.modal.open(model, { size: 'md', backdrop: 'static' });
+    this.modal.open(model, { size: 'md', backdrop: 'static' });
   }
 }

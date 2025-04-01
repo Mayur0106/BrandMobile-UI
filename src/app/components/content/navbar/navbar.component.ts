@@ -62,6 +62,7 @@ export class NavbarComponent {
       "UserType": "Employee,Admin,Society,PMC",
       "active": false,
       "children": [
+
         {
           "path": "mobileType",
           "title": "Mobile Type",
@@ -73,13 +74,23 @@ export class NavbarComponent {
           "type": "link"
         },
         {
-          "path": "model",
-          "title": "Model",
+          "path": "mobileRamRom",
+          "title": "Ram and Rom",
           "type": "link"
         },
         {
-          "path": "company",
-          "title": "Company",
+          "path": "mobileCompany",
+          "title": "Mobile Company",
+          "type": "link"
+        },
+        {
+          "path": "mobileModel",
+          "title": "Mobile Model",
+          "type": "link"
+        },
+        {
+          "path": "mobileMaster",
+          "title": "Mobile Master",
           "type": "link"
         }
       ]

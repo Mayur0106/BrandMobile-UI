@@ -5,24 +5,30 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MobileService } from '../../../../Services/mobile.service';
 
 @Component({
-  selector: 'app-mobile-colour',
+  selector: 'app-ram-rom',
   standalone: true,
   imports: [CommonModule, FormsModule,
         ReactiveFormsModule],
-  templateUrl: './mobile-colour.component.html',
-  styleUrl: './mobile-colour.component.css'
+  templateUrl: './ram-rom.component.html',
+  styleUrl: './ram-rom.component.css'
 })
-export class MobileColourComponent implements OnInit{
+export class RamRomComponent implements OnInit{
 
-Colourlist : any[] = [];
-ColourModel : any[] = [];
+RamList : any[] = [];
+RomList : any[] = [];
+RamRomList : any[] = [];
+RamRomModel : any[] = [];
+typeFlag : boolean = false;
+title : string = '';
 constructor(private modal : NgbModal , private mobileService : MobileService){}
 
 ngOnInit() {
   this.getMasterData()
 }
-  addType(model){
-    this.ColourModel = [];
+  addType(model ,type){
+    this.title = type
+    this.typeFlag =  type === 'Ram' ? true : false;
+    this.RamRomModel = [];
     this.modal.open(model, { size: 'md', backdrop: 'static' });
   }
 
@@ -30,10 +36,15 @@ ngOnInit() {
     this.modal.dismissAll();
   }
 
-  AddColour(){
+  AddRamRom(){
     debugger
-    this.ColourModel['Input'] = 'InsertColour';
-    const adColour = this.mobileService.AddTypeColourComapny(this.ColourModel).subscribe((response) =>
+    if(this.title === 'Ram'){
+      this.RamRomModel['Input'] =    'InsertRam' ;
+    }
+    if(this.title === 'Rom'){
+      this.RamRomModel['Input'] =    'InsertRom' ;
+    }
+    const addRamRom = this.mobileService.AddTypeColourComapny(this.RamRomModel).subscribe((response) =>
     {
       if(response){
         this.getMasterData();
@@ -47,8 +58,11 @@ ngOnInit() {
     const getData = this.mobileService.GetMobileMasterData().subscribe((response) =>
       {
         if(response){
-          this.Colourlist = response[1];
+          this.RamList = response[3];
+          this.RomList = response[4];
+          this.RamRomList = response[4];
         }
       })
   }
 }
+

@@ -33,6 +33,7 @@
   top: 100%;
   left: 0;
   z-index: 1000;
+  width: 200px;
   display: none; /* Hide by default, Bootstrap will show it on toggle */
 }
 
